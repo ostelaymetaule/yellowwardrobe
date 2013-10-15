@@ -1,5 +1,60 @@
-var el = document.getElementById("ywardrobe").addEventListener('click', FoundWat);
+function core(){
+  this.id="";
+  this.text="";
+}
+function lookers(){
+  this.id="";
+}
 
+ //Backendless: defaults
+    var Defaults = {
+        APPLICATION_ID : 'C18E9A39-62FE-5566-FFC8-EE8525D35500',
+        SECRET_KEY : '72F9829A-ECCC-2878-FFB8-CA7ED1BE2B00',
+        VERSION : 'v1'
+    };
+
+function getUserId(){
+    document.cookie = "key1=value1;key2=value2;expires=date";
+    var myId='';
+    //Get Id from Cookies
+    var myCookies = document.cookie;
+    var cookiearray  = myCookies.split(';');
+    for (var i = cookiearray.length - 1; i >= 0; i--) {
+      var name = cookiearray[i].split('=')[0];
+      var value = cookiearray[i].split('=')[1];
+      if (name='myId') {
+          myId=value;
+          break;
+      };
+      
+    };
+    //no Id found? Generate one
+    if (!myId) {
+      Backendless.initApp( appId, secretKey, versionNum );
+      var lookersDB = Backendless.Persistence.of( Person );
+        lookers = lookersDB.findLast();
+        lookers.id+=1;
+
+        lookersDB.save(lookers);
+
+    };
+}
+
+
+
+function saveFoundItem(item, userId){
+
+}
+
+function loadFoundItems(userId){
+
+
+}
+
+function addWardrobeEvent(bildId){
+  var el = document.getElementById("ywardrobe").addEventListener('click', FoundWat);
+
+}
 function FoundWat() {
 
   var dropPrefix = new Array(7);
